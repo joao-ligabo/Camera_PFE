@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplicação de captura e identificação de imagens usando recursos nativos do navegador.">
+  <title>Camera PFE Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Camera PFE Studio - início">
+    </a>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">SEU MOMENTO, IDENTIFICADO</p>
+      <h1>Capture. Personalize.<br><span>Registre.</span></h1>
+      <p class="intro-copy">Use sua câmera para criar uma fotografia com efeito visual, identificação e data/hora incorporados à imagem.</p>
+    </section>
+
+    <section class="workspace" aria-label="Estúdio de captura">
+      <div class="panel camera-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">01 / VISUALIZAÇÃO</p>
+            <h2>Estúdio de captura</h2>
+          </div>
+          <span id="cameraStatus" class="status-pill"><span class="status-dot"></span> Câmera desligada</span>
+        </div>
+
+        <div class="video-frame" id="videoFrame">
+          <video id="cameraVideo" autoplay playsinline muted aria-label="Imagem ao vivo da câmera"></video>
+          <div class="camera-placeholder" id="cameraPlaceholder">
+            <strong>Sua câmera aparecerá aqui</strong>
+            <span>Ative a câmera para começar a captura.</span>
+          </div>
+          <div class="viewfinder viewfinder-tl"></div>
+          <div class="viewfinder viewfinder-tr"></div>
+          <div class="viewfinder viewfinder-bl"></div>
+          <div class="viewfinder viewfinder-br"></div>
+          <span class="live-tag" id="liveTag">AO VIVO</span>
+        </div>
+
+        <p id="message" class="message" role="status" aria-live="polite">Para começar, ative a câmera do dispositivo.</p>
+
+        <div class="camera-actions">
+          <button id="toggleCameraBtn" class="button button-primary" type="button">
+            <span aria-hidden="true"></span> Ativar câmera
+          </button>
+          <button id="captureBtn" class="button button-secondary" type="button" disabled>
+            </span> Capturar foto
+          </button>
+        </div>
+      </div>
+
+      <aside class="panel settings-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">02 / PERSONALIZAÇÃO</p>
+            <h2>Detalhes da captura</h2>
+          </div>
+        </div>
+
+        <label class="field-label" for="identification">Identificação na imagem</label>
+        <input id="identification" type="text" maxlength="48" placeholder="Ex.: João Ligabo" autocomplete="name">
+        <p class="field-hint">Esse texto será desenhado na fotografia final.</p>
+
+        <label class="field-label" for="effectSelect">Efeito visual</label>
+        <select id="effectSelect">
+          <option value="none">Original</option>
+          <option value="grayscale">Preto e branco</option>
+          <option value="sepia">Sépia</option>
+          <option value="contrast">Contraste</option>
+        </select>
+        <p class="field-hint">O efeito é aplicado ao capturar a imagem.</p>
+
+        <div class="info-card">
+          <div>
+            <strong>Data e hora automáticas</strong>
+            <p>O momento da captura será registrado na própria imagem.</p>
+          </div>
+        </div>
+
+        <div class="output-section">
+          <div class="output-title">
+            <div>
+              <p class="section-kicker">03 / RESULTADO</p>
+              <h3>Sua fotografia</h3>
+            </div>
+            <span id="outputBadge" class="output-badge">AGUARDANDO</span>
+          </div>
+
+          <div class="result-frame" id="resultFrame">
+            <div class="result-empty" id="resultEmpty">
+              <p>A foto processada aparecerá aqui.</p>
+            </div>
+            <img id="resultImage" alt="Fotografia processada com identificação e data e hora" hidden>
+          </div>
+
+          <button id="downloadBtn" class="button button-download" type="button" disabled>
+            <span aria-hidden="true">↓</span> Baixar fotografia
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>CAMERA PFE STUDIO</span>
+    </footer>
+  </main>
+
+  <canvas id="photoCanvas" hidden></canvas>
+</body>
+</html>
